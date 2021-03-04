@@ -1,0 +1,2 @@
+DOMAIN_EXTENSIONS = ['.com']
+DOMAIN_NOT_FOUND_STR = 'No match'
