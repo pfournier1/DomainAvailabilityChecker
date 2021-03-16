@@ -26,9 +26,9 @@ def is_domain_name_available(domain_name: str, total_lines: int, current_count: 
     try:
         whois.whois(domain_name)
         logger.info(f"{current_count}/{total_lines} Domain name is unavailable: {domain_name}")
-        return True
+        return False
     except whois.parser.PywhoisError:
         logger.info(f"{current_count}/{total_lines} Domain name is available: {domain_name}")
-        return False
+        return True
 
 
