@@ -8,7 +8,7 @@ import datetime
 from random import randint
 from time import sleep
 from config import DOMAIN_EXTENSIONS, JSON_PATH, WORDS_PATH
-from helper import is_domain_available, add_to_json_file
+from helper import is_domain_name_available, add_to_json_file
 
 
 @click.command()
@@ -33,14 +33,14 @@ def main(start_index):
     with open(WORDS_PATH, 'r') as f:
         words = [line.replace('\n', '').lower() for line in f.readlines()]
     total_lines = len(words)
-    current_count = start_index
+    current_count = start_index + 1
     # For every word in the file starting at the Xth word indicated by start_index,
     # check if domain is available given different DOMAIN_EXTENSIONS
     for word in words[start_index:]:
         domain_data = {word: []}
         for domain_extension in DOMAIN_EXTENSIONS:
             domain_name = f"{word}{domain_extension}"
-            is_available = is_domain_available(domain_name, total_lines, current_count)
+            is_available = is_domain_name_available(domain_name, total_lines, current_count)
             if is_available:
                 domain_data[word].append(domain_name)
             current_count += 1
